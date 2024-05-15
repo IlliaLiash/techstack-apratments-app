@@ -1,18 +1,55 @@
 module.exports = {
-  root: true,
-  env: { browser: true, es2020: true },
+  env: {
+    browser: true,
+    es2021: true,
+  },
   extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:react-hooks/recommended',
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "prettier",
+    "airbnb",
+    "airbnb-typescript",
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs'],
-  parser: '@typescript-eslint/parser',
-  plugins: ['react-refresh'],
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    ecmaVersion: "latest",
+    sourceType: "module",
+    project: "./tsconfig.json",
+    tsconfigRootDir: __dirname,
+  },
+  ignorePatterns: ["dist"],
+  plugins: ["@typescript-eslint", "react", "prettier", "react-refresh"],
   rules: {
-    'react-refresh/only-export-components': [
-      'warn',
-      { allowConstantExport: true },
+    "react/react-in-jsx-scope": 0,
+    "prettier/prettier": [
+      "error",
+      {
+        endOfLine: "auto",
+        singleAttributePerLine: true,
+      },
+    ],
+    "react/jsx-max-props-per-line": [1, { when: "always" }],
+    "@typescript-eslint/no-unused-vars": "warn",
+    "implicit-arrow-linebreak": "warn",
+    "object-curly-newline": "off",
+    "import/no-extraneous-dependencies": [
+      "off",
+      {
+        devDependencies: false,
+      },
+    ],
+    "@typescript-eslint/quotes": "off",
+    "linebreak-style": 0,
+    "comma-dangle": "off",
+    "@typescript-eslint/comma-dangle": "off",
+    "import/extensions": [
+      "warn",
+      "always",
+      {
+        ignorePackages: true,
+      },
     ],
   },
-}
+};
