@@ -51,5 +51,6 @@ module.exports = {
         ignorePackages: true,
       },
     ],
+    "react/function-component-definition": "off",
   },
 };
