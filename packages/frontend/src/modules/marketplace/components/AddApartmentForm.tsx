@@ -1,13 +1,12 @@
 import { Field, Form } from "react-final-form";
 import { FormApi } from "final-form";
 import { IAddForm } from "../../../shared/types/add-form.types.ts";
-import {
-  floatingNumbers,
-  numbersRegex,
-} from "../../../shared/utils/validation/regex.ts";
 import { ICreateApartment } from "../../../shared/types/apartment.types.ts";
 import addApartmentValidation from "../../../shared/utils/validation/add-form.validation.ts";
-import validateFormValues from "../../../shared/utils/validation/validate-form-values.ts";
+import {
+  validateFormValues,
+  validateNumberValue,
+} from "../../../shared/utils/validation/validate-form-values.ts";
 
 interface IAddApartmentFormProps {
   handleApartmentCreate: (newApartment: ICreateApartment) => void;
@@ -65,10 +64,7 @@ const AddApartmentForm = ({
                   type="text"
                   placeholder="3"
                   className="py-1 px-2 rounded-md border border-light-grey-30"
-                  parse={(value) => value === "" || (value !== 0 && numbersRegex.test(value))
-                      ? value
-                      : undefined
-                  }
+                  parse={validateNumberValue}
                 />
               </div>
               <div className="flex flex-col gap-1 w-1/5">
@@ -78,12 +74,9 @@ const AddApartmentForm = ({
                   id="price"
                   component="input"
                   type="text"
-                  placeholder="99.00"
+                  placeholder="99"
                   className="py-1 px-2 rounded-md border border-light-grey-30"
-                  parse={(value) => value === "" || (value !== 0 && floatingNumbers.test(value))
-                      ? value
-                      : undefined
-                  }
+                  parse={validateNumberValue}
                 />
               </div>
             </div>

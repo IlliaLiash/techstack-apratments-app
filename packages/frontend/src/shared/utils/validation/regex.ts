@@ -1,5 +1,3 @@
-const numbersRegex = /^[0-9]*$/;
+const numbersRegex = /[^0-9]/g;
 
-const floatingNumbers = /^[0-9]*\.?[0-9]*$/;
-
-export { floatingNumbers, numbersRegex };
+export { numbersRegex };

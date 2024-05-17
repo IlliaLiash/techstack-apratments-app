@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import { sortOptions } from "../../../shared/constants/filter.consts.ts";
-import { numbersRegex } from "../../../shared/utils/validation/regex.ts";
+import { validateNumberValue } from "../../../shared/utils/validation/validate-form-values.ts";
 
 const ListFilters = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -71,9 +71,9 @@ const ListFilters = () => {
           placeholder="Rooms"
           onChange={(e) => {
             const { value } = e.target;
-            if (value === "" || (value !== "0" && numbersRegex.test(value))) {
-              handleRoomsFilter(e);
-            }
+            const validatedValue = validateNumberValue(value);
+            e.target.value = validatedValue;
+            handleRoomsFilter(e);
           }}
           value={roomsFilter || ""}
           className="border border-gray-300 rounded-md px-2 py-1 w-[70px]"
