@@ -1,6 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import { sortOptions } from "../../../shared/constants/filter.consts.ts";
+import { numbersRegex } from "../../../shared/utils/validation/regex.ts";
 
 const ListFilters = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -13,7 +14,7 @@ const ListFilters = () => {
     searchParams.get("rooms")
   );
 
-  const handleSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { value } = e.target;
 
     setSelectValue(value);
@@ -44,31 +45,38 @@ const ListFilters = () => {
   };
 
   return (
-    <div className="flex flex-row">
-      <div className="flex flex-row gap-4">
-        <h5>Sort By</h5>
+    <div className="flex flex-row gap-[24px]">
+      <div className="flex flex-row gap-4 items-center">
+        <h5>Sort By:</h5>
         <select
-          onChange={(event: React.ChangeEvent<HTMLSelectElement>) =>
-            handleSelect(event)
-          }
+          onChange={handleSelect}
           value={selectValue || ""}
+          className="border border-gray-300 rounded-md px-2 py-1"
         >
-          <option>Default</option>
           {sortOptions.map((option) => (
-            <option key={option.value} value={option.value}>
+            <option
+              key={option.value}
+              value={option.value}
+            >
               {option.label}
             </option>
           ))}
         </select>
       </div>
-      <div className="flex flex-row gap-4">
-        <label htmlFor="rooms">Rooms Filter</label>
+      <div className="flex flex-row gap-4 items-center">
+        <label htmlFor="rooms">Rooms Filter:</label>
         <input
           type="text"
           id="rooms"
           placeholder="Rooms"
-          onChange={handleRoomsFilter}
+          onChange={(e) => {
+            const { value } = e.target;
+            if (value === "" || (value !== "0" && numbersRegex.test(value))) {
+              handleRoomsFilter(e);
+            }
+          }}
           value={roomsFilter || ""}
+          className="border border-gray-300 rounded-md px-2 py-1 w-[70px]"
         />
       </div>
     </div>

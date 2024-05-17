@@ -4,6 +4,7 @@ type IApatmentQueryParams = {
 };
 
 type IApartment = {
+  _id: string;
   name: string;
   rooms?: number;
   price?: number;

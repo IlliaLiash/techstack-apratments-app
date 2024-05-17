@@ -9,7 +9,11 @@ import {
   ICreateApartment,
   IPriceOrderDirectionType,
 } from "../../shared/types/apartment.types.ts";
-import { createApartment, getListApartment } from "../../api/apartment.api.ts";
+import {
+  createApartment,
+  deleteApartment,
+  getListApartment,
+} from "../../api/apartment.api.ts";
 
 const MarketplacePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -52,6 +56,15 @@ const MarketplacePage = () => {
     }
   };
 
+  const handleApartmentDelete = async (id: string) => {
+    try {
+      await deleteApartment(id);
+      refetch();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     refetch();
   }, [searchParams]);
@@ -59,7 +72,10 @@ const MarketplacePage = () => {
   return (
     <div className="flex flex-col gap-8 items-center py-[24px]">
       <AddApartmentForm handleApartmentCreate={handleApartmentCreate} />
-      <ApartmentsList data={data} />
+      <ApartmentsList
+        data={data}
+        handleDelete={handleApartmentDelete}
+      />
     </div>
   );
 };

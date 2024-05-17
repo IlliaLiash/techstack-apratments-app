@@ -18,12 +18,12 @@ const createApartment = (data: ICreateApartment) =>
 const updateApartment = (id: string, data: IUpdateApartment) =>
   api.put(`apartments/${id}`, data);
 
-const removeApartment = (id: string) => api.delete(`apartments/${id}`);
+const deleteApartment = (id: string) => api.delete(`apartments/${id}`);
 
 export {
   getListApartment,
   getByIdApartment,
   createApartment,
   updateApartment,
-  removeApartment,
+  deleteApartment,
 };

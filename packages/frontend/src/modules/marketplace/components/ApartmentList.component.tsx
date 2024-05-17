@@ -1,17 +1,51 @@
 import {
+  createColumnHelper,
   flexRender,
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import apartmentListCols from "./ApartmentTableCols.tsx";
+import { useMemo } from "react";
 import { IApartment } from "../../../shared/types/apartment.types.ts";
 import ListFilters from "./ListFilters.tsx";
 
 interface IApartmentsListProps {
   data: IApartment[];
+  handleDelete: (id: string) => void;
 }
 
-const ApartmentsList = ({ data }: IApartmentsListProps) => {
+const ApartmentsList = ({ data, handleDelete }: IApartmentsListProps) => {
+  const columnHelper = createColumnHelper<IApartment>();
+
+  const apartmentListCols = useMemo(
+    () => [
+      columnHelper.accessor("name", {
+        cell: (info) => info.getValue(),
+      }),
+      columnHelper.accessor("rooms", {
+        cell: (info) => info.getValue() ?? "null",
+      }),
+      columnHelper.accessor("price", {
+        cell: (info) => info.getValue() ?? "null",
+      }),
+      columnHelper.accessor("description", {
+        cell: (info) => info.getValue() ?? "null",
+      }),
+      columnHelper.display({
+        id: "actions",
+        header: "Actions",
+        cell: (info) => (
+          <button
+            className="bg-red-500 text-white px-2 py-1 rounded-md"
+            onClick={() => handleDelete(info.row.original._id)}
+          >
+            Delete
+          </button>
+        ),
+      }),
+    ],
+    [data]
+  );
+
   const table = useReactTable({
     data,
     columns: apartmentListCols,
@@ -20,7 +54,9 @@ const ApartmentsList = ({ data }: IApartmentsListProps) => {
 
   return (
     <div className="flex flex-col gap-2 w-4/5">
-      <h3 className="text-3xl text-dark-grey-100">Available rents</h3>
+      <h3 className="text-3xl text-dark-grey-100">
+        Available rents: {data.length}
+      </h3>
       <ListFilters />
       <table>
         <thead>
