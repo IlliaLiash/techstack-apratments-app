@@ -1,7 +1,7 @@
 type IAddForm = {
   name: string;
-  rooms: number;
-  price: number;
+  rooms: string;
+  price: string;
   description: string;
 };
 

@@ -1,4 +1,4 @@
-import { IsInt, IsNotEmpty, IsOptional, IsString, MaxLength, Min } from 'class-validator';
+import { IsInt, IsOptional, IsString, MaxLength, Min } from 'class-validator';
 
 export class CreateApartmentDto {
   @IsString()
@@ -12,9 +12,11 @@ export class CreateApartmentDto {
 
   @IsInt()
   @Min(1)
+  @IsOptional()
   rooms: number;
 
   @IsInt()
   @Min(1)
+  @IsOptional()
   price: number;
 }
