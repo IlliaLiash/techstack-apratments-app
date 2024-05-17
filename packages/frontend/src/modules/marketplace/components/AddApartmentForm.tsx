@@ -1,4 +1,5 @@
 import { Field, Form } from "react-final-form";
+import { FormApi } from "final-form";
 import { IAddForm } from "../../../shared/types/add-form.types.ts";
 import {
   floatingNumbers,
@@ -15,7 +16,7 @@ interface IAddApartmentFormProps {
 const AddApartmentForm = ({
   handleApartmentCreate,
 }: IAddApartmentFormProps) => {
-  const handleFormSubmit = (formValues: IAddForm) => {
+  const handleFormSubmit = (formValues: IAddForm, form: FormApi<any>) => {
     const apartmentObj = {
       name: formValues.name,
       rooms: Number(formValues.rooms) || null,
@@ -24,6 +25,8 @@ const AddApartmentForm = ({
     };
 
     handleApartmentCreate(apartmentObj);
+
+    form.reset();
   };
 
   const validate = validateFormValues<IAddForm>(addApartmentValidation);
@@ -31,7 +34,7 @@ const AddApartmentForm = ({
   return (
     <div className="flex flex-col gap-2 w-4/5">
       <h2 className="text-3xl text-dark-grey-100">Create new rent</h2>
-      <Form
+      <Form<IAddForm>
         onSubmit={handleFormSubmit}
         validate={validate}
       >
@@ -45,6 +48,7 @@ const AddApartmentForm = ({
                 <label htmlFor="name">Title</label>
                 <Field
                   name="name"
+                  id="name"
                   component="input"
                   type="text"
                   placeholder="Ex. Flat in the city center"
@@ -56,6 +60,7 @@ const AddApartmentForm = ({
                 <label htmlFor="rooms">Beds</label>
                 <Field
                   name="rooms"
+                  id="rooms"
                   component="input"
                   type="text"
                   placeholder="3"
@@ -70,6 +75,7 @@ const AddApartmentForm = ({
                 <label htmlFor="price">Price</label>
                 <Field
                   name="price"
+                  id="price"
                   component="input"
                   type="text"
                   placeholder="99.00"
@@ -86,6 +92,7 @@ const AddApartmentForm = ({
               <label htmlFor="description">Description</label>
               <Field
                 name="description"
+                id="description"
                 component="input"
                 type="text"
                 className="py-1 px-2 rounded-md border border-light-grey-30"

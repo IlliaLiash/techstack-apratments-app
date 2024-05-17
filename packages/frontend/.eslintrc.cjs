@@ -54,5 +54,6 @@ module.exports = {
       },
     ],
     "react/function-component-definition": "off",
+    "jsx-a11y/label-has-associated-control": "off",
   },
 };
