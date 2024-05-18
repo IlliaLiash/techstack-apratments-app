@@ -7,4 +7,6 @@ type TApartmentQuery = {
   rooms?: number;
 };
 
+
+
 export type { TApartmentQuery, TPaginationOrderDirectionType };
