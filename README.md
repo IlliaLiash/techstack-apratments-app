@@ -30,6 +30,8 @@ Without Docker:
 
 Ensure you have MongoDB installed and running on your machine.
 
+Update the mongodb url in the `.env` file in the `packages/backend` directory.
+
 ```sh
 $ cd packages/backend
 $ npm install
@@ -40,4 +42,12 @@ $ npm run start:dev
 $ cd packages/frontend
 $ npm install
 $ npm start dev
+```
+
+### Seed data
+
+To seed data, run the following command in the `packages/backend` directory:
+
+```sh
+$ npx nestjs-command seed:apartments
 ```
