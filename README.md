@@ -35,5 +35,5 @@ $ npm run start:dev
 ```sh
 $ cd packages/frontend
 $ npm install
-$ npm start
+$ npm start dev
 ```
