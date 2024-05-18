@@ -16,7 +16,7 @@ import {
 } from "../../api/apartment.api.ts";
 
 const MarketplacePage = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, _setSearchParams] = useSearchParams();
 
   const [data, setData] = useState<IApartment[]>(() => []);
 
