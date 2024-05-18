@@ -39,4 +39,8 @@ export class ApartmentService {
   delete(id: string): Promise<ApartmentDocument> {
     return this.apartmentModel.findByIdAndDelete(id).exec();
   }
+
+  createMany(apartments: CreateApartmentDto[]): Promise<ApartmentDocument[]> {
+    return this.apartmentModel.insertMany(apartments);
+  }
 }
