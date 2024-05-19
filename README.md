@@ -27,7 +27,7 @@ $ docker-compose up
 
 ### Seed data
 
-To seed data, run the following command in the `packages/backend` directory:
+To seed data, run the following command in the `app/backend` directory:
 
 ```sh
 $ npx nestjs-command seed:apartments
