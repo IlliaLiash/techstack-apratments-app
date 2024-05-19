@@ -13,9 +13,7 @@ Frontend app powered by:
 - [React Query](https://react-query.tanstack.com/)
 - [React Final Form](https://final-form.org/react)
 
-Backend server app will be available on http://localhost:3000
-
-Client app will be available on http://localhost:8000
+App will be available on http://localhost:3000
 
 API Documentation will be available on http://localhost:3000/api
 

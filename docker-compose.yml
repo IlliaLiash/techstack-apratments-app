@@ -1,15 +1,7 @@
 version: "3.8"
 services:
-  frontend:
-    build: ./packages/frontend
-    depends_on:
-      - backend
-    ports:
-      - "8000:8000"
-    networks:
-      - network-backend
-  backend:
-    build: ./packages/backend
+  app:
+    build: .
     depends_on:
       - mongodb
     ports:
