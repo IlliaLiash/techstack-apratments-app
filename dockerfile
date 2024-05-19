@@ -17,7 +17,7 @@ RUN cd frontend && npm run build
 
 RUN mkdir -p /app/backend/public && cp -r /app/frontend/dist/* /app/backend/public/
 
-EXPOSE 3001
+EXPOSE 3000
 
 WORKDIR /app/backend
 

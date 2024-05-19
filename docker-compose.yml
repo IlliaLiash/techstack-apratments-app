@@ -6,8 +6,6 @@ services:
       - mongodb
     ports:
       - 3000:3000
-    networks:
-      - network-backend
 
   mongodb:
     image: mongo
@@ -16,11 +14,6 @@ services:
       - mongodb_data:/data/db
     ports:
       - 27017:27017
-    networks:
-      - network-backend
-
-networks:
-  network-backend:
 
 volumes:
   mongodb_data:
